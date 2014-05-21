@@ -66,3 +66,9 @@ button {
     font-size: 150%;
     border-radius: 15px;
 }
+
+.error {
+    color: red;
+    font-size: 300%;
+    font-weight: bold;
+}
