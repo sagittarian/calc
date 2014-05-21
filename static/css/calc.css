@@ -4,7 +4,7 @@
 }
 
 .calc-register, .calc-input, .calc-operator {
-    font-size: 300%;
+    font-size: 500%;
     height: 50%;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .calc-section .operator button {
-    width: 50px;
+    width: 75px;
 }
 
 .ajax-wait-indicator {
@@ -52,6 +52,7 @@
 
 .ajax-wait-text {
     float: left;
+    font-size: 200%;
 }
 
 .ajax-cancel {
@@ -62,5 +63,6 @@
 }
 
 button {
+    font-size: 150%;
     border-radius: 15px;
 }
