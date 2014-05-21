@@ -103,6 +103,10 @@ def minus(n):
 def reciprocal(n):
     return 1 / n
 
+@Operator.define('x^2', num_args=1)
+def squared(n):
+    return n**2
+
 @Operator.define('sin', num_args=1)
 def sine(n):
     return math.sin(n)
