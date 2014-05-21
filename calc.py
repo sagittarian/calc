@@ -50,7 +50,7 @@ class Operator(object):
 
     @classmethod
     def get_operators(cls):
-        return cls.operators.keys()
+        return {key: cls.operators[key].keys() for key in cls.operators}
 
     def __init__(self, func, num_args=2):
         if not callable(func):
@@ -93,16 +93,18 @@ def reciprocal(n):
 
 ############################ routes ####################################
 
-@app.route('/api/operators')
-def get_operators():
-    '''Return an object that specifies valid operators that the calculator
-    server can handle'''
-    return jsonify(binary=Operator.get_operators())
 
 def parse_operands(string):
     # string is a comma-separated list of numbers
     # XXX exception from misformed strings
     return [float(s) for s in string.split(',')]
+
+
+@app.route('/api/operators')
+def get_operators():
+    '''Return an object that specifies valid operators that the calculator
+    server can handle'''
+    return Operator.get_operators()
 
 
 @app.route('/api/calc')
