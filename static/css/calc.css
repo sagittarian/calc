@@ -1,0 +1,48 @@
+.calc-display, .calc-controls {
+    width: 100%;
+    height: 200px;
+}
+
+.calc-register, .calc-input, .calc-operator {
+    height: 50%
+}
+
+.calc-register {
+    width: 100%;
+}
+
+.calc-operator {
+    width: 20%;
+    float: left;
+}
+
+.calc-section {
+    float: left;
+}
+
+.calc-binary {
+    width: 30%;
+}
+
+.calc-unary {
+    width: 20%;
+}
+
+.calc-numbers {
+    width: 50%;
+}
+
+.button-row button {
+    width: 33.33%;
+    float: left;
+}
+.button-row .clear {
+    width: 100%;
+}
+
+.ajax-wait-indicator {
+    height: 100px;
+}
+.ajax-cancel {
+    display: none;
+}
