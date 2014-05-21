@@ -1,6 +1,7 @@
 from __future__ import division
 
 from collections import defaultdict
+from time import sleep
 
 from flask import Flask, jsonify, request
 
@@ -8,10 +9,9 @@ app = Flask(__name__)
 app.debug = True # XXX debug mode
 
 def random_wait():
-    ### XXX
     '''Simulate a long server operation by simply sleeping for a few
     seconds'''
-    pass
+    sleep(10)
 
 class Operator(object):
 
