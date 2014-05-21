@@ -16,12 +16,13 @@ def random_wait():
 
 class Operator(object):
 
-    # a dict mapping operators to the functions that define them
+    # a dict mapping number of arguments to operators to the functions
+    # that define them
     operators = defaultdict(dict)
 
-    # a dict mapping operators to instances of the Operator class, so
-    # that we don't have to keep creating new instances for the same
-    # operators XXX defaultdict update comments
+    # a dict mapping number of arguments to operators to instances of
+    # the Operator class, so that we don't have to keep creating new
+    # instances for the same operators
     instances = defaultdict(dict)
 
     @classmethod
@@ -51,17 +52,23 @@ class Operator(object):
 
     @classmethod
     def get_operators(cls):
+        '''Return a dictionary mapping number of arguments to a list of
+        operands that are defined for that number of arguments'''
         return {key: cls.operators[key].keys() for key in cls.operators}
 
     def __init__(self, func, num_args=2):
         if not callable(func):
-            func = self.operators[num_args][func]  # XXX nonexistent key
+            func = self.operators[num_args][func]
+            # XXX nonexistent key, though the route functions will
+            # handle this without raising an exception
         self.func = func
         self.num_args = num_args
 
     def __call__(self, *args):
         '''Apply this operator to the arguments'''
-        # XXX mismatch on number of arguments
+        # XXX mismatch on number of arguments, won't happen in general
+        # though because we ask for an Operator which will accept the
+        # correct number of arguments
         random_wait()
         return self.func(*args)
 
@@ -110,8 +117,7 @@ def safe_route(routefunc):
     return newfunc
 
 def parse_operands(string):
-    # string is a comma-separated list of numbers
-    # XXX exception from misformed strings
+    '''Parse a comma-separated list of into a list'''
     return [float(s) for s in string.split(',')]
 
 
