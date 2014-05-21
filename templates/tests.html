@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block test_css %}
+    <link rel="stylesheet" href="static/css/qunit-1.14.0.css">
+{% endblock%}
+
+{% block test_markup %}
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+{% endblock %}
+
+{% block test_scripts %}
+    <script src="static/js/qunit-1.14.0.js"></script>
+    <script src="static/js/tests.js"></script>
+{% endblock %}
