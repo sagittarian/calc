@@ -67,7 +67,7 @@
 		        if (!xhr) { return; }
 		        xhr.abort();
 		        xhr = null;
-		        enableUI();
+		        Calc.enableUI();
 	        },
 	        handleNumber: function (event) {
 		        var btnStr = $(this).text(),
