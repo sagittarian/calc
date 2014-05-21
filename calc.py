@@ -1,6 +1,8 @@
 from __future__ import division
 
-from collections import defaultdict
+import math
+
+from collections import defaultdict, OrderedDict
 from functools import wraps
 from time import sleep
 
@@ -21,12 +23,12 @@ class Operator(object):
 
     # a dict mapping number of arguments to operators to the functions
     # that define them
-    operators = defaultdict(dict)
+    operators = defaultdict(OrderedDict)
 
     # a dict mapping number of arguments to operators to instances of
     # the Operator class, so that we don't have to keep creating new
     # instances for the same operators
-    instances = defaultdict(dict)
+    instances = defaultdict(OrderedDict)
 
     @classmethod
     def define(cls, operator, num_args=2):
@@ -100,6 +102,19 @@ def minus(n):
 @Operator.define('1/x', num_args=1)
 def reciprocal(n):
     return 1 / n
+
+@Operator.define('sin', num_args=1)
+def sine(n):
+    return math.sin(n)
+
+@Operator.define('cos', num_args=1)
+def cosine(n):
+    return math.cos(n)
+
+@Operator.define('tan', num_args=1)
+def tangent(n):
+    return math.tan(n)
+
 
 ############################ routes ####################################
 
