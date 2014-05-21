@@ -126,10 +126,13 @@
 			        var handleOpclass = function (obj, selector) {
 				        var $el = $(selector);
 				        $.each(obj, function (idx, val) {
-					        var $btn = $(document.createElement('button'));
+					        var $btn = $(document.createElement('button')),
+					            $div = $(document.createElement('div'));
 					        $btn.text(val);
 					        $btn.attr('type', 'button');
-					        $el.append($btn);
+					        $div.append($btn);
+					        $div.addClass('operator');
+					        $el.append($div);
 				        });
 			        };
 			        handleOpclass(response.result["1"], '.calc-unary');

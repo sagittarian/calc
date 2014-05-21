@@ -4,11 +4,13 @@
 }
 
 .calc-register, .calc-input, .calc-operator {
-    height: 50%
+    font-size: 300%;
+    height: 50%;
 }
 
-.calc-register {
+.calc-register, .calc-input {
     width: 100%;
+    padding-left: 20%;
 }
 
 .calc-operator {
@@ -40,9 +42,25 @@
     width: 100%;
 }
 
+.calc-section .operator button {
+    width: 50px;
+}
+
 .ajax-wait-indicator {
     height: 100px;
 }
+
+.ajax-wait-text {
+    float: left;
+}
+
 .ajax-cancel {
     display: none;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button {
+    border-radius: 15px;
 }
