@@ -6,13 +6,16 @@ from time import sleep
 
 from flask import Flask, jsonify, request
 
+SLEEP_DELAY = 1  # number of seconds to sleep to fake a long
+                 # processing time
+
 app = Flask(__name__)
 app.debug = True # XXX debug mode
 
 def random_wait():
     '''Simulate a long server operation by simply sleeping for a few
     seconds'''
-    sleep(10)
+    sleep(SLEEP_DELAY)
 
 class Operator(object):
 
