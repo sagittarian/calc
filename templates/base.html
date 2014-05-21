@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="css/calc.css">
+    <link rel="stylesheet" href="static/css/calc.css">
+	{% block test_css %}{% endblock %}
     <title>Calculator</title>
   </head>
   <body>
+	{% block test_markup %}{% endblock %}
 	<div class="ajax-wait-indicator"><div class="ajax-wait-text"></div><button type="button" class="ajax-cancel">Cancel</button></div>
     <div class="calc-display calc">
 	    <div class="calc-register"></div>
@@ -43,6 +45,7 @@
     </div>
     <div class="error"></div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/calc.js"></script>
+    <script src="static/js/calc.js"></script>
+    {% block test_scripts %}{% endblock %}
   </body>
 </html>

@@ -4,7 +4,7 @@ from collections import defaultdict
 from functools import wraps
 from time import sleep
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 SLEEP_DELAY = 1  # number of seconds to sleep to fake a long
                  # processing time
@@ -151,6 +151,14 @@ def calculate():
     random_wait()  # simulate a long operation
     return op(*operands)
 
+@app.route('/')
+def main():
+    return render_template('index.html')
+
+if app.debug:
+    @app.route('/tests')
+    def tests():
+        return render_template('tests.html')
 
 if __name__ == '__main__':
     app.run()
