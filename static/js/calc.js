@@ -31,9 +31,12 @@
 		        $ajaxCancel.hide();
 	        },
 	        performCalculation: function (op, operands) {
-		        if (xhr) { return; } // we are already in the middle of a
-		        // calculation, shouldn't happen
-		        // under normal circumstances
+		        if (xhr) { return; } // we are already in the middle
+		                             // of a calculation, shouldn't
+		                             // happen under normal
+		                             // circumstances, because we
+		                             // disable the UI while an AJAX
+		                             // request is active
 		        var successHandler = function (response) {
 			        appendToInput = false;
 			        Calc.enableUI();
@@ -49,8 +52,9 @@
 			        Calc.updateInput(response.result);
 		        };
 		        $error.text('');  // clear the error text
-		        Calc.disableUI(); // disable the UI until the result is
-		        // returned, since it can take a long time
+		        Calc.disableUI(); // disable the UI until the result
+		                          // is returned, since it can take a
+		                          // long time
 		        xhr = $.getJSON(calcUrl, {
 			        operator: op,
 			        operands: operands.join(',')
