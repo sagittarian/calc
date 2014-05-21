@@ -1,6 +1,7 @@
 from __future__ import division
 
 from collections import defaultdict
+from functools import wraps
 from time import sleep
 
 from flask import Flask, jsonify, request
@@ -90,9 +91,23 @@ def minus(n):
 def reciprocal(n):
     return 1 / n
 
-
 ############################ routes ####################################
 
+def safe_route(routefunc):
+    '''Wrap a route function in a try-except block to ensure that
+    unexpected exceptions don't get returned to the user.  Return a
+    JSON response.
+
+    '''
+    @wraps(routefunc)
+    def newfunc(*args, **kw):
+        try:
+            result = routefunc(*args, **kw)
+        except Exception as e:
+            return jsonify(status='error', message=e.message)
+        else:
+            return jsonify(status='ok', result=result)
+    return newfunc
 
 def parse_operands(string):
     # string is a comma-separated list of numbers
@@ -101,6 +116,7 @@ def parse_operands(string):
 
 
 @app.route('/api/operators')
+@safe_route
 def get_operators():
     '''Return an object that specifies valid operators that the calculator
     server can handle'''
@@ -108,6 +124,7 @@ def get_operators():
 
 
 @app.route('/api/calc')
+@safe_route
 def calculate():
     '''The calc api endpoint takes two query parameters, operator and
     operands.  The operator is the string representing the operator
@@ -117,12 +134,14 @@ def calculate():
     will be 'ok' if everything is fine, and result, which is the
     result of the operation.  If an error occured then status will be
     'error', and there will be a message key with a brief description
-    of the error.  XXX errors not yet implemented
+    of the error.
 
     '''
     operands = parse_operands(request.args.get('operands'))
     op = Operator.get(request.args.get('operator'), num_args=len(operands))
-    return jsonify(status='ok', result=op(*operands))
+    random_wait()  # simulate a long operation
+    return op(*operands)
+
 
 if __name__ == '__main__':
     app.run()
